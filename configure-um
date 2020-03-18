@@ -1,0 +1,21 @@
+#!/bin/bash
+#
+BUILD_AREA="/usr/src/utilities"
+PACKAGE="radmind"
+VERSION="1.14.1"
+ZSUFFIX=".gz"
+ZCAT="zcat"
+ASUFFIX=".tar"
+UNAR="tar -xvf - "
+PATCH_VERSION="-rsc-10"
+#SITE=""
+
+
+. "/usr/local/libexec/builder.bashinc"
+
+_CONFIGURE_SETUP
+
+# These are static, package specific options.
+declare -a CONFIG_ARGS=( "--with-max-connections=10" "--with-authlevel=2" "--with-maildomain=umich.edu" "--with-radminddir=/var/radmind" "--with-server=radmind.dna.brcf.med.umich.edu" )
+
+_MAIN "$@"
